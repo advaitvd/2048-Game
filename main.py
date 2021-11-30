@@ -150,4 +150,3 @@ def run():
 
 if __name__ == "__main__":
     run()
-    # print(np.random.randint(6))
