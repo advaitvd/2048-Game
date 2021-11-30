@@ -1,6 +1,11 @@
 from Grid import Grid        
 
 def game_over(grid):
+    '''
+    Checks if the game is over. Game is over if no tiles can be merged in any direction and there are no empty tiles left.
+    parameters: grid (Grid object)
+    return: boolean (True if game is over)
+    '''
     for i in range(Grid.GRID_SIZE-1):
         for j in range(Grid.GRID_SIZE-1):
             if grid.matrix[i,j]==grid.matrix[i,j+1] or grid.matrix[i,j]==grid.matrix[i+1,j] or grid.matrix[i,j]==0:
@@ -14,6 +19,11 @@ def game_over(grid):
     return True
 
 def run():
+    '''
+    Function to run the game loop
+    parameters: none
+    return: none
+    '''
     grid=Grid(Grid.GRID_SIZE)
     print('Welcome to the game! This is what you start with.')
     while True:
@@ -34,7 +44,9 @@ def run():
         if game_over(grid)==False:
             grid.fill_empty_location()
         else:
-            if grid.max_elem()==Grid.WIN_SCORE:
+            max_val=grid.max_elem()
+            print('Maximum value acheived: {0}'.format(max_val))
+            if max_val>=Grid.WIN_SCORE:
                 print('Congratulations! You acheived the winning score.')
             else:
                 print('Game Over! Try again...')

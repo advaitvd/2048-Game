@@ -9,7 +9,11 @@ class Grid:
         self.matrix[np.random.randint(n),np.random.randint(n)]=2*np.random.randint(1,3)
     
     def display_grid(self):
-        
+        '''
+        Method to display the grid
+        parameters:none
+        return : none
+        '''
         for i in range(self.GRID_SIZE):
             
             print('+------'*self.GRID_SIZE,end='+\n')
@@ -23,6 +27,11 @@ class Grid:
         print('+------'*self.GRID_SIZE,end='+\n')
 
     def left(self):
+        '''
+        Merge tiles left
+        parameters: none
+        return : none
+        '''
         for i in range(self.GRID_SIZE):
             non_zero_terms=self.matrix[i][self.matrix[i]>0]
             self.matrix[i,:]=0
@@ -40,6 +49,11 @@ class Grid:
 
     
     def right(self):
+        '''
+        Merge tiles right
+        parameters: none
+        return : none
+        '''
         for i in range(self.GRID_SIZE):
             non_zero_terms=self.matrix[i][self.matrix[i]>0]
             self.matrix[i,:]=0
@@ -57,6 +71,11 @@ class Grid:
 
     
     def up(self):
+        '''
+        Merge tiles up
+        parameters:none
+        return : none
+        '''
         for i in range(self.GRID_SIZE):
             non_zero_terms=self.matrix[:,i][self.matrix[:,i]>0]
             self.matrix[:,i]=0
@@ -73,6 +92,11 @@ class Grid:
                     j+=1
     
     def down(self):
+        '''
+        Merge tiles down
+        parameters: none
+        return : none
+        '''
         for i in range(self.GRID_SIZE):
             non_zero_terms=self.matrix[:,i][self.matrix[:,i]>0]
             self.matrix[:,i]=0
@@ -89,6 +113,11 @@ class Grid:
                     j-=1
 
     def find_empty_locations(self):
+        '''
+        Finds all the empty locations in the grid and returns an array of tuples where each tuple gives the empty location indices (row,column)
+        parameters: none
+        return: array of tuples
+        '''
         empty_locations=[]
         for i in range(self.GRID_SIZE):
             for j in range(self.GRID_SIZE):
@@ -97,6 +126,12 @@ class Grid:
         return empty_locations
 
     def fill_empty_location(self):
+        '''
+        Randomly fills an empty location if exists.
+        If empty location does not exist, no changes are made.
+        parameters: none
+        returns none
+        '''
         empty_locations=self.find_empty_locations()
         if len(empty_locations)==0:
             return
@@ -104,4 +139,9 @@ class Grid:
         self.matrix[loc_to_fill[0],loc_to_fill[1]]=2*np.random.randint(1,3)
 
     def max_elem(self):
+        '''
+        Finds and returns the numerically greatest element in the matrix.
+        parameters: none
+        return: int (maximum value) 
+        '''
         return np.max(self.matrix)
